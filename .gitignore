@@ -1,0 +1,14 @@
+*.exe
+*.db
+*.dat
+*.lno
+
+base/
+base2/
+
+models/
+maps/*.log
+maps/*.lit
+maps/*.max
+maps/*.prt
+maps/*.json

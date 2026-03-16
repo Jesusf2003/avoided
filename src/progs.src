@@ -1,0 +1,9 @@
+#pragma target fte
+#output "../progs.dat"
+
+#includelist
+fteextensions.qc
+defs.qc
+player.qc
+main.qc
+#endlist
