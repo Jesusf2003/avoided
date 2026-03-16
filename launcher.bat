@@ -1,3 +1,3 @@
 cd ..
-fteqw64.exe -game mod +map demo
-cd mod
+fteqw64.exe -game avoided +map demo
+cd avoided

@@ -1,6 +1,6 @@
-void() info_player_start = {}; // Entidad para el editor
+void info_player_start () {}; // Entidad para el editor
 
-void() PlayerJump = {
+void PlayerJump () {
     if (!(self.flags & FL_ONGROUND))
 		return;
     if ( !(self.flags & FL_JUMPRELEASED) )
@@ -10,12 +10,10 @@ void() PlayerJump = {
 	self.flags = self.flags - FL_ONGROUND;	// don't stairwalk
 
 	self.button2 = 0;
-	self.velocity_z = self.velocity_z + 270;
-
+    self.velocity_z = self.velocity_z + 270;
 };
 
-void() PlayerPreThink =
-{
+void PlayerPreThink () {
 	// intermission or finale
 	if (self.view_ofs == '0 0 0')
 		return;
@@ -35,16 +33,14 @@ void() PlayerPreThink =
 		self.velocity = '0 0 0';
 };
 
-void() PlayerPostThink =
-{
+void PlayerPostThink () {
     if (self.view_ofs == '0 0 0')
 		return;
     if (!(self.flags & FL_ONGROUND))
 		self.jump_flag = self.velocity_z;
 };
 
-entity() SelectSpawnPoint =
-{
+entity SelectSpawnPoint () {
     local entity spot;
 
     spot = find (world, classname, "info_player_start");
@@ -54,7 +50,7 @@ entity() SelectSpawnPoint =
 	return spot;
 };
 
-void() PutClientInServer = {
+void PutClientInServer () {
     local entity spot = SelectSpawnPoint();
 
     self.classname = "player";

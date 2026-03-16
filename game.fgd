@@ -1,9 +1,8 @@
 //
-// Quake game definition file (.fgd)
-// for Jackhammer 1.0 and above
+// Avoided game definition file (.fgd)
+// for Jackhammer(Steam version) and above
 //
-// written by autolycus / autolycus@planetquake.com
-// modified by XaeroX / support@hlfx.ru
+// written by Jesusf2003 / https://github.com/Jesusf2003
 //
 
 //
@@ -22,10 +21,8 @@
 
 @baseclass base(Appearflags) flags(Angle) size(-16 -16 -24, 16 16 32) offset(0 0 24) color(50 255 50) = PlayerClass []
 
-@PointClass base(PlayerClass) = info_player_start : "Player 1 start" []
+@PointClass base(PlayerClass) studio("models/testplayer.iqm") = info_player_start : "Player 1 start" []
 @PointClass = info_null : "info_null (spotlight target)"
 [
 	targetname(target_source) : "Name" 
 ]
-
-@SolidClass base(Appearflags) = func_wall : "Moving wall" []
