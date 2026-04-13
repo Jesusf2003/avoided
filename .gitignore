@@ -7,7 +7,6 @@
 
 base*/
 
-models/
 maps/*.log
 maps/*.lit
 maps/*.max
