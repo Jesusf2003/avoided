@@ -1,10 +1,11 @@
+.vscode/
+
 *.exe
 *.db
 *.dat
 *.lno
 
-base/
-base2/
+base*/
 
 models/
 maps/*.log

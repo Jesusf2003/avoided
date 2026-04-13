@@ -1,70 +1,34 @@
-void info_player_start () {}; // Entidad para el editor
+class CPlayer : CBaseEntity {
+    float m_fJumpVelocity;
 
-void PlayerJump () {
-    if (!(self.flags & FL_ONGROUND))
-		return;
-    if ( !(self.flags & FL_JUMPRELEASED) )
-		return;		// don't pogo stick
-    
-    self.flags = self.flags - (self.flags & FL_JUMPRELEASED);
-	self.flags = self.flags - FL_ONGROUND;	// don't stairwalk
+    // Constructor de la clase
+    void() CPlayer = {
+        this.m_strClassName = "player";
+        this.m_fJumpVelocity = 270;
+    };
 
-	self.button2 = 0;
-    self.velocity_z = self.velocity_z + 270;
-};
+    // Lógica de salto encapsulada
+    virtual void() Jump = {
+        if (!(this.flags & FL_ONGROUND)) return;
+        if (!(this.flags & FL_JUMPRELEASED)) return;
 
-void PlayerPreThink () {
-	// intermission or finale
-	if (self.view_ofs == '0 0 0')
-		return;
+        this.flags -= (this.flags & FL_JUMPRELEASED);
+        this.flags -= FL_ONGROUND;
+        this.button2 = 0;
+        this.velocity_z += this.m_fJumpVelocity;
+    };
 
-	// is this still used
-	makevectors (self.v_angle);
-
-	if (self.button2)
-	{
-		PlayerJump ();
-	}
-	else
-		self.flags = self.flags | FL_JUMPRELEASED;
-
-	// teleporters can force a non-moving pause time
-	if (time < self.pausetime)
-		self.velocity = '0 0 0';
-};
-
-void PlayerPostThink () {
-    if (self.view_ofs == '0 0 0')
-		return;
-    if (!(self.flags & FL_ONGROUND))
-		self.jump_flag = self.velocity_z;
-};
-
-entity SelectSpawnPoint () {
-    local entity spot;
-
-    spot = find (world, classname, "info_player_start");
-	if (!spot)
-		error ("PutClientInServer: no info_player_start on level");
-
-	return spot;
-};
-
-void PutClientInServer () {
-    local entity spot = SelectSpawnPoint();
-
-    self.classname = "player";
-	self.solid = SOLID_SLIDEBOX;
-    setmodel(self, "models/testplayer.iqm");
-	self.movetype = MOVETYPE_WALK;
-	self.flags = FL_CLIENT;
-	self.health = 100;
-	self.fixangle = TRUE;
-	setsize (self, VEC_HULL_MIN, VEC_HULL_MAX);
-	self.view_ofs = '0 0 22';
-
-    self.pausetime = 0;
-
-	self.origin = spot.origin + '0 0 1';
-	self.angles = spot.angles;
+    // Configuración inicial del jugador
+    virtual void() Spawn = {
+        this.classname = "player";
+        this.solid     = SOLID_SLIDEBOX;
+        this.movetype  = MOVETYPE_WALK;
+        this.flags     = FL_CLIENT;
+        this.health    = 100;
+        this.fixangle  = TRUE;
+        
+        setmodel(this, "models/testplayer.iqm");
+        setsize(this, '-16 -16 -24', '16 16 32');
+        this.view_ofs = '0 0 22';
+    };
 };

@@ -4,6 +4,8 @@
 #includelist
 fteextensions.qc
 defs.qc
+entity.qc
 player.qc
+client.qc
 main.qc
 #endlist
