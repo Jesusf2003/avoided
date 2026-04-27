@@ -1,40 +1,54 @@
-.float m_fWalkSpeed;
-.float m_fRunSpeed;
+#include "player.qh"
 
-class CPlayer : CBaseEntity {
-    float m_fJumpVelocity;
-    float max_speed;
+void PlayerPreThink() {
+    if (self.view_ofs == '0 0 0') return;
 
-    // El constructor debe ser simple
-    void() CPlayer = {
-        this.m_strClassName = "player";
-        this.m_fJumpVelocity = 270;
-        this.m_fWalkSpeed = 100;
-        this.m_fRunSpeed = 400;
-    };
+    makevectors(self.v_angle);
 
-    // Definición del método
-    virtual void() Jump = {
-        if (!(this.flags & FL_ONGROUND)) return;
-        if (!(this.flags & FL_JUMPRELEASED)) return;
+    if (self.button3) {
+        self.maxspeed    = runspeed;
+        self.p_is_running = TRUE;
+    }
 
-        this.flags -= (this.flags & FL_JUMPRELEASED);
-        this.flags -= FL_ONGROUND;
-        this.button2 = 0;
-        this.velocity_z += this.m_fJumpVelocity;
-    };
+    if (self.button2) {
+        PlayerJump(self);
+    } else {
+        self.flags |= FL_JUMPRELEASED;
+    }
 
-    virtual void() Spawn = {
-        this.classname = "player";
-        this.solid     = SOLID_SLIDEBOX;
-        this.movetype  = MOVETYPE_WALK;
-        this.flags     = FL_CLIENT;
-        this.health    = 100;
+    if (time < self.pausetime) self.velocity = '0 0 0';
+}
 
-        this.maxspeed = this.m_fWalkSpeed;
-        
-        setmodel(this, "models/testplayer.iqm");
-        setsize(this, '-16 -16 -24', '16 16 32');
-        this.view_ofs = '0 0 22';
-    };
-};
+void PlayerPostThink() {
+    if (self.view_ofs == '0 0 0') return;
+
+    if (!(self.flags & FL_ONGROUND)) {
+        self.jump_flag = self.velocity_z;
+    }
+
+    self.p_last_pos = self.origin;
+}
+
+void PlayerJump(entity ent) {
+    if (!(self.flags & FL_ONGROUND))     return;
+    if (!(self.flags & FL_JUMPRELEASED)) return;
+
+    self.flags  -= (self.flags & FL_JUMPRELEASED);
+    self.flags  -= FL_ONGROUND;
+    self.button2 = 0;
+    self.velocity_z += jumpvelocity;
+}
+
+void PlayerSpawn(entity spot) {
+    self.classname = "player";
+    self.solid     = SOLID_SLIDEBOX;
+    self.movetype  = MOVETYPE_WALK;
+    self.flags     = FL_CLIENT;
+    self.health    = 100;
+    self.maxspeed  = walkspeed;
+
+    precache_model("models/testplayer.iqm");
+    setmodel(self, "models/testplayer.iqm");
+    setsize(self, '-16 -16 -24', '16 16 32');
+    self.view_ofs = '0 0 22';
+}

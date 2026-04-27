@@ -1,10 +1,10 @@
 #pragma target fte
+#define NQSSQC
 #output "../progs.dat"
 
 #includelist
 fteextensions.qc
 defs.qc
-entities.qc
 player.qc
 client.qc
 main.qc

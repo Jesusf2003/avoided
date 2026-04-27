@@ -1,0 +1,20 @@
+#ifndef PLAYER_QH
+#define PLAYER_QH
+
+const float walkspeed    = 200;
+const float runspeed     = 400;
+const float jumpvelocity = 270;
+
+// Campos propios del jugador
+.float  p_is_running;
+.vector p_last_pos;
+.float  jump_flag;
+.float  pausetime;
+
+// Prototipos
+void PlayerPreThink();
+void PlayerPostThink();
+void PlayerJump(entity ent);
+void PlayerSpawn(entity spot);
+
+#endif
