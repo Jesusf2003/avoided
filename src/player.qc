@@ -5,10 +5,21 @@ void PlayerPreThink() {
 
     makevectors(self.v_angle);
 
-    if (self.button3) {
-        self.maxspeed    = runspeed;
-        self.p_is_running = TRUE;
-    }
+    // local float speed_frac;
+
+    // if (self.button3) {
+    //     self.p_is_running = TRUE;
+    //     speed_frac = 1.0;
+    // } else {
+    //     self.p_is_running = FALSE;
+    //     speed_frac = walkspeed / runspeed;
+    // }
+
+    // Escalamos el vector de movimiento directamente
+    // self.movement_x *= speed_frac;
+    // self.movement_y *= speed_frac;
+
+    self.maxspeed = runspeed;  // siempre en runspeed, el scale lo maneja movement
 
     if (self.button2) {
         PlayerJump(self);
@@ -27,6 +38,19 @@ void PlayerPostThink() {
     }
 
     self.p_last_pos = self.origin;
+
+    // Clampear velocidad horizontal aquí, después de que el engine aplicó física
+    local vector hvel;
+    local float  hspeed;
+
+    hvel   = self.velocity;
+    hvel_z = 0;
+    hspeed = vlen(hvel);
+
+    if (hspeed > self.maxspeed) {
+        self.velocity_x = (hvel_x / hspeed) * self.maxspeed;
+        self.velocity_y = (hvel_y / hspeed) * self.maxspeed;
+    }
 }
 
 void PlayerJump(entity ent) {
