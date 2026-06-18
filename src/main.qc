@@ -7,7 +7,7 @@ void main () {
 
 void worldspawn (void){
 	cvar_set("sv_gravity", "800");
-    precache_model("models/testplayer.iqm");
+    precache_model("models/player.mdl");
 };
 
 void StartFrame () {};

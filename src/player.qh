@@ -1,8 +1,8 @@
 #ifndef PLAYER_QH
 #define PLAYER_QH
 
-const float walkspeed    = 200;
-const float runspeed     = 300;
+const float walkspeed    = 120;
+const float runspeed     = 250;
 const float jumpvelocity = 270;
 
 // Campos propios del jugador

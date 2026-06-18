@@ -2,29 +2,25 @@
 
 void PlayerPreThink() {
     if (self.view_ofs == '0 0 0') return;
-
     makevectors(self.v_angle);
 
-    // local float speed_frac;
+    local vector move_input;
+    move_input_x = self.movement_x;
+    move_input_y = self.movement_y;
+    move_input_z = 0;
 
-    // if (self.button3) {
-    //     self.p_is_running = TRUE;
-    //     speed_frac = 1.0;
-    // } else {
-    //     self.p_is_running = FALSE;
-    //     speed_frac = walkspeed / runspeed;
-    // }
-
-    // Escalamos el vector de movimiento directamente
-    // self.movement_x *= speed_frac;
-    // self.movement_y *= speed_frac;
-
-    self.maxspeed = runspeed;  // siempre en runspeed, el scale lo maneja movement
+    if (vlen(move_input) > 210) {
+        self.p_is_running = TRUE;
+        self.maxspeed = runspeed;
+    } else {
+        self.p_is_running = FALSE;
+        self.maxspeed = walkspeed;
+    }
 
     if (self.button2) {
         PlayerJump(self);
     } else {
-        self.flags |= FL_JUMPRELEASED;
+        self.flags = self.flags | FL_JUMPRELEASED;
     }
 
     if (time < self.pausetime) self.velocity = '0 0 0';
@@ -39,28 +35,26 @@ void PlayerPostThink() {
 
     self.p_last_pos = self.origin;
 
-    // Clampear velocidad horizontal aquí, después de que el engine aplicó física
-    local vector hvel;
-    local float  hspeed;
-
-    hvel   = self.velocity;
-    hvel_z = 0;
-    hspeed = vlen(hvel);
-
+    vector hvel = self.velocity;
+    hvel_z = 0; // Descartamos el eje vertical
+    
+    float hspeed = vlen(hvel);
     if (hspeed > self.maxspeed) {
-        self.velocity_x = (hvel_x / hspeed) * self.maxspeed;
-        self.velocity_y = (hvel_y / hspeed) * self.maxspeed;
+        vector hdir = normalize(hvel);
+        self.velocity_x = hdir_x * self.maxspeed;
+        self.velocity_y = hdir_y * self.maxspeed;
     }
 }
 
 void PlayerJump(entity ent) {
-    if (!(self.flags & FL_ONGROUND))     return;
-    if (!(self.flags & FL_JUMPRELEASED)) return;
+    if (!(ent.flags & FL_ONGROUND))     return;
+    if (!(ent.flags & FL_JUMPRELEASED)) return;
 
-    self.flags  -= (self.flags & FL_JUMPRELEASED);
-    self.flags  -= FL_ONGROUND;
-    self.button2 = 0;
-    self.velocity_z += jumpvelocity;
+    ent.flags &= ~FL_JUMPRELEASED;
+    ent.flags &= ~FL_ONGROUND;
+    
+    ent.button2 = 0;
+    ent.velocity_z += jumpvelocity;
 }
 
 void PlayerSpawn(entity spot) {
@@ -71,8 +65,9 @@ void PlayerSpawn(entity spot) {
     self.health    = 100;
     self.maxspeed  = walkspeed;
 
-    precache_model("models/testplayer.iqm");
-    setmodel(self, "models/testplayer.iqm");
+    precache_model("models/player.mdl");
+    setmodel(self, "models/player.mdl");
     setsize(self, '-16 -16 -24', '16 16 32');
+    
     self.view_ofs = '0 0 22';
 }

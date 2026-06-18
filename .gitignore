@@ -6,6 +6,7 @@
 *.lno
 
 base*/
+models/
 
 maps/*.log
 maps/*.lit
