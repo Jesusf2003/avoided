@@ -1,0 +1,82 @@
+// takedamage values
+enum {
+    DAMAGE_NO = 0,
+    DAMAGE_YES = 1,
+    DAMAGE_AIM = 2
+};
+
+// edict.movetype values
+enum {
+    MOVETYPE_NONE = 0,              // never moves
+    MOVETYPE_ANGLENOCLIP = 1,
+    MOVETYPE_ANGLECLIP = 2,
+    MOVETYPE_WALK = 3,              // players only
+    MOVETYPE_STEP = 4,              // discrete, not real time unless fall
+    MOVETYPE_FLY = 5,
+    MOVETYPE_TOSS = 6,              // gravity
+    MOVETYPE_PUSH = 7,              // no clip to world, push and crush
+    MOVETYPE_NOCLIP = 8,
+    MOVETYPE_FLYMISSILE = 9,        // fly with extra size against monsters
+    MOVETYPE_BOUNCE = 10,
+    MOVETYPE_BOUNCEMISSILE = 11,    // bounce with extra size
+};
+
+// point content values
+enum {
+    CONTENT_EMPTY = -1,
+    CONTENT_SOLID = -2,
+    CONTENT_WATER = -3,
+    CONTENT_SLIME = -4,
+    CONTENT_LAVA = -5,
+    CONTENT_SKY = -6
+};
+
+// edict.deadflag values
+enum {
+    DEAD_NO = 0,
+    DEAD_DYING = 1,
+    DEAD_DEAD = 2,
+    DEAD_RESPAWNABLE = 3
+};
+
+// edict.state values (movers)
+enum {
+    STATE_TOP = 0,
+    STATE_BOTTOM = 1,
+    STATE_UP = 2,
+    STATE_DOWN = 3,
+};
+
+// edict.flags
+enum {
+    FL_FLY = 1,
+    FL_SWIM = 2,
+    FL_CLIENT = 8,              // set for all client edicts
+    FL_INWATER = 16,            // for enter / leave water splash
+    FL_MONSTER = 32,
+    FL_GODMODE = 64,            // player cheat
+    FL_NOTARGET = 128,          // player cheat
+    FL_ITEM = 256,              // extra wide size for bonus items
+    FL_ONGROUND = 512,          // standing on something
+    FL_PARTIALGROUND = 1024,    // not all corners are valid
+    FL_WATERJUMP = 2048,        // player jumping out of water
+    FL_JUMPRELEASED = 4096      // for jump debouncing
+};
+
+// edict.solid values
+enum {
+    SOLID_NOT = 0,          // no interaction with other objects
+    SOLID_TRIGGER = 1,      // touch on edge, but not blocking
+    SOLID_BBOX = 2,         // touch on edge, block
+    SOLID_SLIDEBOX = 3,     // touch on edge, but not an onground
+    SOLID_BSP = 4           // bsp clip, touch on edge, block
+};
+
+// edict.items bits that the core damage code (T_Damage) needs to clear when
+// armor is depleted. Add your own weapon/item/powerup bits alongside these
+// when you build out a real item system.
+enum {
+    IT_ARMOR1 = 8192,
+    IT_ARMOR2 = 16384,
+    IT_ARMOR3 = 32768
+};

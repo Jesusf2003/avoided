@@ -1,11 +1,12 @@
 #pragma target fte
-#define NQSSQC
-#output "../progs.dat"
+#pragma PROGS_DAT ../progs.dat
 
 #includelist
-fteextensions.qc
 defs.qc
-player.qc
-client.qc
-main.qc
+utils/subs.qc
+world/combat.qc
+world/world.qc
+server/client.qc
+server/player.qc
+world/misc.qc
 #endlist

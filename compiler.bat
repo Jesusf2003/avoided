@@ -1,1 +1,1 @@
-fteqcc64.exe -src src -Wall
+fteqcc64.exe -src src -std=fte -Wall
