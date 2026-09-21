@@ -17,6 +17,7 @@
     See file, 'COPYING', for details.
 */
 #include "constants.qh"
+#include "subs.qh"
 
 float() crandom =
 {

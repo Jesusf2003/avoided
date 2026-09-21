@@ -17,6 +17,8 @@
     See file, 'COPYING', for details.
 */
 
+#include "combat.qh"
+
 void(entity targ, entity attacker) ClientObituary;
 
 // stand-ins for the monster AI hooks this core damage code calls into.

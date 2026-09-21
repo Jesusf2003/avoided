@@ -1,0 +1,17 @@
+/*
+==============================================================================
+
+ITEMS.QC - public API
+
+Prototypes for the shared pickup/respawn scaffolding defined in
+src/items/items.qc. This header is pulled in from defs.qc, so every
+item file (item_armor.qc, and any item_*.qc added later) inherits these
+functions and can call them regardless of where it sits in progs.src.
+
+==============================================================================
+*/
+
+float() CheckValidTouch;
+void() StartItem;
+void() ItemRespawn;
+void() ItemTouched;

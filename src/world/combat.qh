@@ -1,0 +1,5 @@
+//
+//	world/combat.qc
+//
+void(entity targ, entity inflictor, entity attacker, float damage) T_Damage;
+float(entity targ, entity inflictor) CanDamage;

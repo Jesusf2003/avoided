@@ -239,6 +239,8 @@ void		end_sys_fields;			// flag for structure dumping
 
 #include "utils/constants.qh"
 #include "utils/math.qh"
+#include "items/items.qh"
+#include "funcs/funcs.qh"
 
 // protocol bytes
 float	SVC_TEMPENTITY		= 23;
@@ -545,20 +547,4 @@ void(entity e) setspawnparms		= #78;		// set parm1... to the
 
 //============================================================================
 
-//
-// utils/subs.qc
-//
-void(vector tdest, float tspeed, void() func) SUB_CalcMove;
-void(entity ent, vector tdest, float tspeed, void() func) SUB_CalcMoveEnt;
-void(vector destangle, float tspeed, void() func) SUB_CalcAngleMove;
-void() SUB_CalcMoveDone;
-void() SUB_CalcAngleMoveDone;
-void() SUB_Null;
-void() SUB_UseTargets;
-void() SUB_Remove;
 
-//
-//	world/combat.qc
-//
-void(entity targ, entity inflictor, entity attacker, float damage) T_Damage;
-float(entity targ, entity inflictor) CanDamage;

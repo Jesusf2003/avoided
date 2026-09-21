@@ -1,0 +1,15 @@
+/*
+==============================================================================
+
+FUNCS.QC - public API
+
+Prototypes for the shared brush-entity scaffolding defined in
+src/funcs/funcs.qc. This header is pulled in from defs.qc, so every
+func_*.qc file (func_detail.qc, and any func_*.qc added later such as
+func_door or func_train) inherits these functions and can call them
+regardless of where it sits in progs.src.
+
+==============================================================================
+*/
+
+void() StartBrush;

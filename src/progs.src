@@ -4,6 +4,10 @@
 #includelist
 defs.qc
 utils/subs.qc
+items/items.qc
+items/item_armor.qc
+funcs/funcs.qc
+funcs/func_detail.qc
 world/combat.qc
 world/world.qc
 server/client.qc

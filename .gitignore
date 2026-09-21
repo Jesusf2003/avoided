@@ -4,12 +4,15 @@
 *.db
 *.dat
 *.lno
+docs/*
 
-base*/
-models/
+bases/
+models/*.mdl
+progs/*.mdl
 
 maps/*.log
 maps/*.lit
 maps/*.max
+maps/*.jmx
 maps/*.prt
 maps/*.json

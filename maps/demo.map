@@ -65,14 +65,6 @@
 ( 48 -48 32 ) ( -48 -48 32 ) ( 48 48 32 ) FLOOR_GREEN_A [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -48 48 0 ) ( -48 -48 0 ) ( 48 48 0 ) FLOOR_GREEN_A [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 }
-{
-( 128 48 120 ) ( 128 48 0 ) ( 128 -48 120 ) WALL_GREY_B [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 104 -48 120 ) ( 104 -48 0 ) ( 104 48 120 ) WALL_GREY_B [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 128 -48 120 ) ( 128 -48 0 ) ( 104 -48 120 ) WALL_GREY_B [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 104 48 120 ) ( 104 48 0 ) ( 128 48 120 ) WALL_GREY_B [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 104 48 0 ) ( 104 -48 0 ) ( 128 48 0 ) WALL_GREY_B [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 128 -48 120 ) ( 104 -48 120 ) ( 128 48 120 ) WALL_GREY_B [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-}
 }
 {
 "classname" "info_player_start"
@@ -80,21 +72,19 @@
 "origin" "-208 -16 24"
 }
 {
-"classname" "weapon_supershotgun"
+"classname" "light"
+"style" "0"
+"light" "300"
+"origin" "0 0 256"
+}
+{
+"classname" "item_armor1"
+"wait" "0"
 "origin" "0 0 32"
 }
 {
 "classname" "light"
 "style" "0"
-"light" "500"
-"_sunlight_color" "0.83 0.91 1.00"
-"_sun_mangle" "60 -45 0"
-"_sunlight" "300"
-"_sunlight_penumbra" "4"
-"origin" "0 -32 288"
-}
-{
-"classname" "monster_army"
-"spawnflags" "0"
-"origin" "101 -169 24"
+"light" "250"
+"origin" "224 0 160"
 }
