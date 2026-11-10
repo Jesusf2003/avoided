@@ -1,14 +1,10 @@
-.vscode/
-
-*.exe
-*.db
 *.dat
 *.lno
+*.wad
 
-base*/
-
+# Maps
 maps/*.log
-maps/*.lit
+maps/*.json
 maps/*.max
 maps/*.prt
-maps/*.json
+maps/*.jmx

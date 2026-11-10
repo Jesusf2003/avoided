@@ -1,1 +1,0 @@
-fteqcc64.exe -src src -Wall
